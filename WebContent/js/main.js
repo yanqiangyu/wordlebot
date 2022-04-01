@@ -69,7 +69,7 @@ const letterState = ['letter-grey','letter-yellow','letter-green']
 
 function drawboard (board, div) {
 	var s = "<BR><BR><div id='gameTable' width='62%'>";
-	var n = game.step > 0 ? game.step : 1;
+	var n = game.step;
 
 	for (i = 0; i < n; ++i) {
 		s += '<div class="row">'
@@ -142,9 +142,12 @@ function play (board, step) {
 
 	game.guesses = findWord (wordlist, statistics); 
 	if (game.guesses.length > 0) {
-		showTable (game.guesses, "Best guesses:", "guesses", Math.min(game.guesses.length, 10));
+		showTable (game.guesses, "Best guesses: (" + game.guesses.length + ")", "guesses", Math.min(game.guesses.length, 10));
 		board[step].c = game.guesses.length;
 		drawboard (board, "board");	
+	}
+	if (game.matched || game.step >= 6) {
+		document.getElementById("test").value = (game.matched ? "" + game.step + "/6, Again?" : "Hmmm... try again?");
 	}
 }
 
@@ -168,9 +171,6 @@ function test () {
 			var pick = Math.floor (Math.min (10, game.guesses.length) * Math.random ()); 
 			game.board[game.step].w = game.guesses[pick].c;
 			game.matched = testboard(game.board, game.step);
-			if (game.matched || game.step >= 6) {
-				document.getElementById("test").value = (game.matched ? "Got it, try Again?" : "Hmmm... try again?");
-			}
 			play (game.board, ++game.step);	
 		}
 		else {
@@ -183,7 +183,7 @@ var game;
 function main () {
 	var board = [];
 	var guesses = [];
-	for (i = 0; i < 6; ++i) {
+	for (i = 0; i < 7; ++i) {
 		var match = new Array(5).fill(0);
 		var guess = {
 			c : 0,
