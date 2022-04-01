@@ -69,8 +69,16 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 	animation: 0.3s linear 0.8s 1 flip;
 }
 
+
 #control {
 	text-align: center;
+}
+
+.guesses-table-row {
+	text-align: center;
+	color: white;
+	background-color: #6aaa64;
+	cursor : pointer;
 }
 
 .letter-grey {
@@ -119,4 +127,5 @@ main {
 	flex: 1;
 	overflow-y: scroll;
 	height: 75vh;
+	width: 50vh;
 }

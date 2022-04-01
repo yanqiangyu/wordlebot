@@ -53,8 +53,8 @@ function showTable (data, title, div, len) {
 	var s = "<BR>" + title + "<BR><TABLE width='62%'>";
 	len = len < 0 ? data.length : len;
 	for (i = 0; i < len; ++i) {
-		s += "<TR><TD>";
-		s += data[i].c +  "</TD><TD align='right'>" + data[i].r;
+		s += "<TR><TD>" + "<div class='" + div + "-table-row' onclick=playword('" +data[i].c + "')>" + data[i].c + "</div>"
+		s += "</TD><TD align='right'>" + data[i].r;
 		for (j =0; j < 5; ++j) {
 			s += "</TD><TD align='right' width='10%'>" + data[i].p[j];
 		}
@@ -87,7 +87,7 @@ function drawboard (board, div) {
 					${board[i].w.charAt(j)}
 			</div>`;
 		}
-		s += `<div class="remaining">${board[i].c} possible</div>`;
+		s += `<div class="remaining">${board[i].c}</div>`;
 		s+= "</div>"
 	}
 	s += "</div>";
@@ -154,15 +154,14 @@ function play (board, step) {
 function test () {
 	if (!game.setup) {
 		var a = document.getElementById("answer").value.toUpperCase();
-		if (a.length > 5) {
-			a  = a.substring(0,5);
+		if (!wordlist.find(element => element.toUpperCase() == a)) {
+			window.alert ("Not acceptable word: " + a);
+			return;
 		}
-		if (a.length == 5) {
-			game.answer = a;
-		}
+		game.answer = a;
 		document.getElementById("answer").value = game.answer;
 		document.getElementById("answer").disabled = true;
-		document.getElementById("test").value = "Next";
+		document.getElementById("test").value = "Random Guess";
 		game.setup = true;
 		play (game.board, game.step);	
 	}
@@ -176,6 +175,14 @@ function test () {
 		else {
 			location.reload();
 		}
+	}
+}
+
+function playword (word) {
+	if (game.step < 6 && !game.matched) {
+		game.board[game.step].w = word;
+		game.matched = testboard(game.board, game.step);
+		play (game.board, ++game.step);	
 	}
 }
 
