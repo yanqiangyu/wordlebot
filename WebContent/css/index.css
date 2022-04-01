@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@keyframes flip {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+body, html {
+	font-family: "Open Sans", sans-serif;
+	font-size: 20px;
+}
+#gameTable .letter {
+  width: 75px;
+	height: 75px;
+	border: #777 2px solid;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 5px;
+	animation-fill-mode: both;
+	font-size: 50px;
+	font-weight: bold;
+	
+}
+
+#answer {
+	font-size: 30px;
+	padding: 10px;
+	outline: none;
+}
+
+#test {
+	font-size: 30px;
+	cursor: pointer;
+	padding: 10px;
+	outline: none;
+	margin-top: 20px;
+}
+table {
+  border-collapse: collapse;
+	margin: 20px;
+}
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.active-letter-1 {
+	transform: rotateX(90deg);
+	animation: 0.3s linear 0s 1 flip;
+}
+.active-letter-2 {
+	transform: rotateX(90deg);
+	animation: 0.3s linear 0.2s 1 flip;
+}
+.active-letter-3 {
+	transform: rotateX(90deg);
+	animation: 0.3s linear 0.4s 1 flip;
+}
+.active-letter-4 {
+	transform: rotateX(90deg);
+	animation: 0.3s linear 0.6s 1 flip;
+}
+.active-letter-5 {
+	transform: rotateX(90deg);
+	animation: 0.3s linear 0.8s 1 flip;
+}
+
+#control {
+	text-align: center;
+}
+
+.letter-grey {
+	background-color: #777;
+	border-style: none;
+	color: white;
+	border: #777 2px solid !important;
+}
+.remaining {
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	margin-left: 5px;
+	font-family: monospace;
+}
+
+.letter-yellow {
+	background-color: #c9b458;
+	border-style: none;
+	color: white;
+	border: #c9b458 2px solid !important;
+}
+.letter-green {
+	background-color: #6aaa64;
+	border-style: none;
+	color: white;
+	border: #6aaa64 2px solid !important;
+}
+
+#gameTable .row {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+main {
+	display: flex;
+
+}
+#board {
+	flex: 1;
+	display: flex;
+	padding-top: 60px;
+	justify-content: center;
+}
+#stats {
+	flex: 1;
+	overflow-y: scroll;
+	height: 75vh;
+}
