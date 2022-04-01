@@ -11,4 +11,6 @@ This is a HTML5/js/ project for solving the time wasting wordle game.
 
     **03/31/2022**  Style changes --chris
 
+    **04/01/2022**  Allow word input
+
 To play the game on New York Times site: https://www.nytimes.com/games/wordle/index.html
