@@ -66,7 +66,8 @@ function showTable (data, title, div, len) {
 
 function drawboard (board, div) {
 	var s = "<BR><BR><TABLE width='62%'>";
-	for (i = 0; i < 6; ++i) {
+	var n = game.step > 0 ? game.step : 1;
+	for (i = 0; i < n; ++i) {
 		s += "<TR><TD>";
 		s += board[i].c;
 		for (j =0; j < 5; ++j) {
@@ -126,7 +127,7 @@ function play (board, step) {
 
 	game.guesses = findWord (wordlist, statistics); 
 	if (game.guesses.length > 0) {
-		showTable (game.guesses, "Best guesses (10 max):", "guesses", Math.min(game.guesses.length, 10));
+		showTable (game.guesses, "Best guesses:", "guesses", Math.min(game.guesses.length, 10));
 		board[step].c = game.guesses.length;
 		drawboard (board, "board");	
 	}
@@ -149,7 +150,8 @@ function test () {
 	}
 	else {
 		if (game.step < 6 && !game.matched) {
-			game.board[game.step].w = game.guesses[0].c;
+			var pick = Math.floor (Math.min (10, game.guesses.length) * Math.random ()); 
+			game.board[game.step].w = game.guesses[pick].c;
 			game.matched = testboard(game.board, game.step);
 			if (game.matched || game.step >= 6) {
 				document.getElementById("test").value = (game.matched ? "Got it, try Again?" : "Hmmm... try again?");
@@ -176,7 +178,7 @@ function main () {
 		board.push(guess);
 	}
 	game = {
-		answer : "NYMPH",
+		answer : "VAGUE",
 		board : board,
 		guesses : guesses,
 		step : 0,

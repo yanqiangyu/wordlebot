@@ -6,5 +6,6 @@ This is a HTML5/js/ project for solving the time wasting wordle game.
 ### Development Log:
 
 **03/31/2022**  Initial version
+**03/31/2022**  Random top 10 play
 
 To play the game on New York Times site: https://www.nytimes.com/games/wordle/index.html
