@@ -64,18 +64,33 @@ function showTable (data, title, div, len) {
 	document.getElementById(div).innerHTML = s;
 }
 
+
+const letterState = ['letter-grey','letter-yellow','letter-green']
+
 function drawboard (board, div) {
-	var s = "<BR><BR><TABLE width='62%'>";
+	var s = "<BR><BR><div id='gameTable' width='62%'>";
 	var n = game.step > 0 ? game.step : 1;
+
 	for (i = 0; i < n; ++i) {
-		s += "<TR><TD>";
-		s += board[i].c;
+		s += '<div class="row">'
+		
 		for (j =0; j < 5; ++j) {
-			s += "</TD><TD align='center'  width='15%'>" + board[i].w.charAt(j) + ":" + board[i].m[j];
+			s += `<div
+				class='
+					letter
+					${game.step > 0? letterState[board[i].m[j]]: ''}
+					${i === n - 1 ? `active-letter-${j+1}`:''}
+				'
+				align='center'
+				width='15%'
+				>
+					${board[i].w.charAt(j)}
+			</div>`;
 		}
-		s += "</TD></TR>";
+		s += `<div class="remaining">${board[i].c} possible</div>`;
+		s+= "</div>"
 	}
-	s += "</TABLE>";
+	s += "</div>";
 	document.getElementById(div).innerHTML = s;
 }
 
