@@ -15,6 +15,8 @@ This is a HTML5/js/ project for solving the time wasting wordle game.
 
     **04/07/2022**  Chrome bookmark script ready
 
+    **04/07/2022**  Chrome bookmark script with random first word
+
 To play the game on New York Times site: https://www.nytimes.com/games/wordle/index.html
 
 * Create a Google Chrome Bookmark "Play Wordle"

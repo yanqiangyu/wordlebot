@@ -125,8 +125,9 @@ function playGame () {
 	var statistics = analyze (wordlist);
 	var guesses = findWord (wordlist, statistics); 
 	if (guesses.length > 0) {
-		console.log ("play word: ", guesses[0].c);
-		play (guesses[0].c);
+		var n = a[0].rowIndex > 0 ? 0 : Math.floor (Math.min (6, guesses.length) * Math.random ());
+		console.log ("play word: ", guesses[n].c);
+		play (guesses[n].c);
 		enter ();
 	}
 }
