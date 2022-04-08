@@ -6,7 +6,7 @@ function analyze (words) {
 			c : String.fromCharCode (i+65), 
 			r : 0,
 			p : p
-		}
+		};
 		statistics.push (metrics);
 	}
 	for (i = 0; i < words.length; ++i) {
@@ -32,7 +32,7 @@ function findWord (words, stats) {
 			c : word.toUpperCase(),
 			r : 0,
 			p : p
-		}
+		};
 		for (j = 0; j < word.length; ++j) {
 			var code = word.toUpperCase().charCodeAt(j)-65;
 			if (code >= 0 && code < 26) {
