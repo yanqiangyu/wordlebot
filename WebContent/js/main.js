@@ -167,7 +167,7 @@ function test () {
 	}
 	else {
 		if (game.step < 6 && !game.matched) {
-			var pick = Math.floor (Math.min (10, game.guesses.length) * Math.random ()); 
+			var pick = Math.floor (Math.min (6, game.guesses.length) * Math.random ());
 			game.board[game.step].w = game.guesses[pick].c;
 			game.matched = testboard(game.board, game.step);
 			play (game.board, ++game.step);	
@@ -190,6 +190,7 @@ var game;
 function main () {
 	var board = [];
 	var guesses = [];
+	var r = Math.floor (Math.min (wordlist.length) * Math.random ());
 	for (i = 0; i < 7; ++i) {
 		var match = new Array(5).fill(0);
 		var guess = {
@@ -200,7 +201,7 @@ function main () {
 		board.push(guess);
 	}
 	game = {
-		answer : "VAGUE",
+		answer : wordlist[r].toUpperCase(),
 		board : board,
 		guesses : guesses,
 		step : 0,
