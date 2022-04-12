@@ -24,7 +24,8 @@ function analyze (words) {
 
 function findWord (words, stats) {
 	var guesses = [];
-	for (i = 0; i < wordlist.length; ++i) {
+	var n = wordlist.length;
+	for (i = 0; i < n; ++i) {
 		var word = wordlist[i];
 		var p = new Array(5).fill(0);
 		var used = new Array(26).fill(0);
@@ -37,9 +38,10 @@ function findWord (words, stats) {
 			var code = word.toUpperCase().charCodeAt(j)-65;
 			if (code >= 0 && code < 26) {
 				if (used[code] < stats[code].p[j]) {
-					guess.r += (stats[code].p[j] - used[code]);
-					guess.p[j] = stats[code].p[j];
-					used[code] = stats[code].p[j];
+					var score = stats[code].p[j];
+					guess.r += (score - used[code]);
+					guess.p[j] = score;
+					used[code] = score;
 				}
 			}
 		}
@@ -186,8 +188,21 @@ function playword (word) {
 	}
 }
 
-var game;
 function main () {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+		wordlist = JSON.parse(this.responseText);
+		console.log ("Loaded word list with " + wordlist.length + " words.");
+		start ();
+	  }
+	};
+	xmlhttp.open("GET", "js/wordlist.json", true);
+	xmlhttp.send();
+}
+
+var game;
+function start () {
 	var board = [];
 	var guesses = [];
 	var r = Math.floor (Math.min (wordlist.length) * Math.random ());
